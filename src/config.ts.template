@@ -1,0 +1,25 @@
+type DingtalkOptions = {
+  [k: string]: {
+    accessToken: string;
+    secret?: string;
+    name?: string;
+    atMobiles?: string[];
+    isAtAll?: boolean;
+  };
+};
+
+export default {
+  port: 3000,
+  // 支持多用户多项目分别设置
+  projects: {
+    '用户 id': {
+      dingtalk: {
+        项目 id: {
+          name: '项目名称',
+          accessToken: 'accessToken',
+          secret: 'secret',
+        },
+      },
+    },
+  } as Record<string, { dingtalk: DingtalkOptions }>,
+};

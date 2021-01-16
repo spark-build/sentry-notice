@@ -1,0 +1,7 @@
+node_modules
+/src/config.ts
+npm-debug.log*
+yarn-error.log
+yarn.lock
+package-lock.json
+dist

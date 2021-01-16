@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2019",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "alwaysStrict": true,
+    "charset": "utf8",
+    "newLine": "lf",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "stripInternal": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
