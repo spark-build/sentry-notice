@@ -1,25 +1,60 @@
-type DingtalkOptions = {
-  [k: string]: {
-    accessToken: string;
-    secret?: string;
-    name?: string;
-    atMobiles?: string[];
-    isAtAll?: boolean;
-  };
+export type DingtalkOptions = {
+  accessToken: string;
+  secret?: string;
+  name?: string;
+  atMobiles?: string[];
+  isAtAll?: boolean;
 };
+
+/**
+ * 配置方式一：
+ * 这样的配置是用于内部集成 webhooks 组件，单一、统一的通知设置，安全性由 sentry-hook-signature 来确保
+ * projects: {
+ *    dingtalk: {
+ *      accessToken: 'accessToken',
+        secret: 'secret', // 可选
+ *   }
+ * }
+ */
+
+/**
+ * 配置方式二：
+ * 这样的配置是用于内部集成 webhooks 组件，不同项目的通知设置，安全性由 sentry-hook-signature 来确保
+ * projects: {
+ *    // 1 代表 sentry 的 project id
+ *    1: {
+ *      accessToken: 'accessToken',
+        secret: 'secret', // 可选
+ *   }
+ * }
+ */
+
+/**
+ * 配置方式三：
+ * 这样的配置是用于项目自身使用 sentry 内置的 webhooks 组件，安全性由填写的用户身份标识来确保
+ * 后续可参照钉钉的关键词、白名单设置来加强安全保障
+ * projects: {
+ *    // 1111231231321312312312321312 代表自建系统的用户身份标识，
+ *    '1111231231321312312312321312': {
+ *      accessToken: 'accessToken',
+        secret: 'secret', // 可选
+ *   }
+ * }
+ */
 
 export default {
   port: 3000,
-  // 支持多用户多项目分别设置
+  // 内部集成时，需要填写
+  clientSecret: 'clientSecret',
+  // 支持多项目分别设置, 支持同时混用设置
   projects: {
-    '用户 id': {
-      dingtalk: {
-        项目 id: {
-          name: '项目名称',
-          accessToken: 'accessToken',
-          secret: 'secret',
-        },
-      },
+    dingtalk: {
+      accessToken: 'accessToken',
+      secret: 'secret',
     },
-  } as Record<string, { dingtalk: DingtalkOptions }>,
+    '用户 id': {
+      accessToken: 'accessToken',
+      secret: 'secret',
+    },
+  } as Record<string, DingtalkOptions> & { dingtalk: DingtalkOptions },
 };
