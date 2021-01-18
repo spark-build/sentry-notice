@@ -67,6 +67,7 @@ export default function dingtalk(app: FastifyInstance) {
         ...extractMajorInfoByWenHooksData({
           ...data?.event,
           ...data,
+          web_url: data?.url,
         }),
         projectName: data?.project_name,
       });
