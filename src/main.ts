@@ -7,6 +7,12 @@ const server = fastify({
   logger: true,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+server.register(require('fastify-rate-limit'), {
+  max: 100,
+  timeWindow: '1 minute',
+});
+
 /*
 +-----------------------------------------------------------------------------------------------------------------------
 | 注册路由
